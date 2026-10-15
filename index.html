@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="PASDiff: Physics-Aware Semantic Guidance for Joint Real-World Low-Light Face Enhancement and Restoration."
+    />
+    <title>PASDiff | ECCV 2026</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/project.css" />
+    <script src="assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <canvas class="particle-background" data-particle-background aria-hidden="true"></canvas>
+    <div id="content">
+      <header class="head" id="top">
+        <h1>
+          PASDiff: Physics-Aware Semantic Guidance for<br />
+          Joint Real-World Low-Light Face Enhancement and Restoration
+        </h1>
+
+        <div class="authors">
+          <span>Yilin Ni<sup>1,*</sup></span>
+          <span>Wenjie Li<sup>2,*</sup></span>
+          <span>Zhengxue Wang<sup>3</sup></span>
+          <span>Juncheng Li<sup>4</sup></span>
+          <span>Guangwei Gao<sup>3,†</sup></span>
+          <span>Jian Yang<sup>3</sup></span>
+        </div>
+
+        <div class="affiliations">
+          <div><sup>1</sup>Nanjing University of Posts and Telecommunications</div>
+          <div><sup>2</sup>Beijing University of Posts and Telecommunications</div>
+          <div><sup>3</sup>Nanjing University of Science and Technology</div>
+          <div><sup>4</sup>East China Normal University</div>
+        </div>
+
+        <nav aria-label="Project page sections">
+          <ul id="tabs">
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#citation">Citation</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section class="comparison-gallery" aria-label="PASDiff visual comparisons">
+        <div class="comparison" data-comparison style="--position: 50%">
+          <img class="comparison-image" src="assets/images/teaser/01_input.png" alt="Low-light face input example 1" />
+          <img class="comparison-image comparison-after" src="assets/images/teaser/01_pasdiff.png" alt="PASDiff restoration example 1" />
+          <button class="comparison-handle" type="button" role="slider" aria-label="Compare input and PASDiff result for example 1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="comparison-grip" aria-hidden="true">‹›</span>
+          </button>
+        </div>
+        <div class="comparison" data-comparison style="--position: 50%">
+          <img class="comparison-image" src="assets/images/teaser/02_input.png" alt="Low-light face input example 2" />
+          <img class="comparison-image comparison-after" src="assets/images/teaser/02_pasdiff.png" alt="PASDiff restoration example 2" />
+          <button class="comparison-handle" type="button" role="slider" aria-label="Compare input and PASDiff result for example 2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="comparison-grip" aria-hidden="true">‹›</span>
+          </button>
+        </div>
+        <div class="comparison" data-comparison style="--position: 50%">
+          <img class="comparison-image" src="assets/images/teaser/03_input.png" alt="Low-light face input example 3" />
+          <img class="comparison-image comparison-after" src="assets/images/teaser/03_pasdiff.png" alt="PASDiff restoration example 3" />
+          <button class="comparison-handle" type="button" role="slider" aria-label="Compare input and PASDiff result for example 3" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="comparison-grip" aria-hidden="true">‹›</span>
+          </button>
+        </div>
+        <div class="comparison" data-comparison style="--position: 50%">
+          <img class="comparison-image" src="assets/images/teaser/04_input.png" alt="Low-light face input example 4" />
+          <img class="comparison-image comparison-after" src="assets/images/teaser/04_pasdiff.png" alt="PASDiff restoration example 4" />
+          <button class="comparison-handle" type="button" role="slider" aria-label="Compare input and PASDiff result for example 4" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="comparison-grip" aria-hidden="true">‹›</span>
+          </button>
+        </div>
+      </section>
+
+      <main>
+        <section class="section materials" aria-labelledby="materials-title">
+          <h2 id="materials-title">Materials</h2>
+          <div class="material-list">
+            <a class="material" href="https://arxiv.org/pdf/2603.24969" target="_blank" rel="noreferrer">
+              <img class="material-icon" src="assets/images/icons/arxiv.svg" alt="" />
+              <span>Paper (arXiv)</span>
+            </a>
+            <a class="material" href="https://drive.google.com/file/d/1ZaQ0LaWCTmAhZo2fnMgtnrPHI1llG5kg/view" target="_blank" rel="noreferrer">
+              <img class="material-icon" src="assets/images/icons/google-drive.svg" alt="" />
+              <span>WildDark-Face Dataset</span>
+              <span>(Google Drive)</span>
+            </a>
+            <a class="material" href="https://github.com/YlNi26/PASDiff" target="_blank" rel="noreferrer">
+              <img class="material-icon" src="assets/images/icons/github.svg" alt="" />
+              <span>Codes (Github)</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section" id="abstract">
+          <h2>Abstract</h2>
+          <p>
+            Real-world low-light faces suffer from coupled illumination, noise, and blur degradations. We propose
+            <strong>PASDiff</strong>, a training-free diffusion framework that jointly enhances visibility and restores
+            facial details. Physics-aware exposure and reflectance constraints recover natural illumination and color,
+            while Style-Agnostic Structural Injection introduces identity-relevant structure without inheriting the
+            lighting bias of external face priors. PASDiff achieves a strong balance among perceptual quality, color
+            fidelity, and identity consistency on synthetic and real-world data.
+          </p>
+        </section>
+
+        <section class="section" id="method">
+          <h2>Method</h2>
+          <figure class="method-figure">
+            <img src="assets/images/method/network.png" alt="Overview of the PASDiff framework" />
+            <figcaption>
+              <strong>Overview of our PASDiff:</strong> PASDiff guides an unconditional diffusion model with two
+              complementary objectives. Physics-aware photometric constraints use inverse intensity weighting and
+              Retinex reflectance to control exposure and chromaticity. SASI aligns the statistics of an external face
+              prior with the current diffusion estimate, retaining high-frequency facial structure while removing
+              mismatched global style. Their aggregated gradient steers each reverse step toward a naturally illuminated
+              and identity-faithful face.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="section process" aria-labelledby="process-title">
+          <h2 id="process-title">Process of Our PASDiff</h2>
+          <div class="process-list">
+            <figure class="process-item">
+              <img src="assets/images/process/input.jpg" alt="Low-light input" />
+              <figcaption>Input</figcaption>
+            </figure>
+            <figure class="process-item">
+              <img src="assets/images/process/reverse-diffusion.gif" alt="Animated PASDiff reverse diffusion process" />
+              <figcaption>Reverse Diffusion</figcaption>
+            </figure>
+            <figure class="process-item">
+              <img src="assets/images/process/output.jpg" alt="PASDiff output" />
+              <figcaption>Output</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="results">
+          <h2>Results</h2>
+          <div class="result-block">
+            <div class="result-label">Synthetic Results</div>
+            <img src="assets/images/results/synthetic-results.png" alt="Qualitative comparison on synthetic low-light face images" />
+          </div>
+          <div class="result-block">
+            <div class="result-label">Real-World Results</div>
+            <img src="assets/images/results/real-world-results.png" alt="Qualitative comparison on real-world low-light face images" />
+          </div>
+        </section>
+
+        <section class="section" id="citation">
+          <h2>Citation</h2>
+          <p>If you find our paper or data useful for your research, please consider citing our work:</p>
+          <div class="citation-wrap">
+            <button type="button" data-copy-bibtex>Copy</button>
+            <pre><code id="bibtex">@inproceedings{ni2026pasdiff,
+    title={PASDiff: Physics-Aware Semantic Guidance for Joint Real-world Low-Light Face Enhancement and Restoration},
+    author={Ni, Yilin and Li, Wenjie and Wang, Zhengxue and Li, Juncheng and Gao, Guangwei and Yang, Jian},
+    booktitle={ECCV},
+    year={2026}
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="section contact">
+          <h2>Contact</h2>
+          <p>
+            If you have any questions, please feel free to reach me out at
+            <a href="mailto:lewj2408@gmail.com">lewj2408@gmail.com</a> or
+            <a href="mailto:nixiaolin26@gmail.com">nixiaolin26@gmail.com</a>.
+          </p>
+        </section>
+      </main>
+
+      <hr />
+      <footer>PASDiff · ECCV 2026</footer>
+    </div>
+  </body>
+</html>
